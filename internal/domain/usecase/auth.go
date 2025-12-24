@@ -16,13 +16,13 @@ type SignupInput struct {
 	DisplayName string
 }
 
-type LoginOuput struct {
+type LoginOutput struct {
 	AccessToken string
 	RefreshToken string
 }
 
 type LoginUseCase interface {
-	Execute(ctx context.Context, input LoginInput) (LoginOuput, error)
+	Execute(ctx context.Context, input LoginInput) (LoginOutput, error)
 }
 
 type SignupUseCase interface {

@@ -12,8 +12,6 @@ import (
 	"github.com/waldy-ctt/core-link-be/internal/repository/pg"
 )
 
-const serverPort int = 8080
-
 func main() {
 	if err := godotenv.Load(); err != nil {
 		log.Println("No .env file found, relying on system environment variable")
@@ -43,11 +41,9 @@ func main() {
 	fmt.Println("✅ Connected to database successfully")
 
 	userRepo := pg.NewUserRepo(db)
-	fmt.Println("User Repo initialized")
-
 	_ = userRepo // "I know this is unused, shut up compiler"
 
-	addr := fmt.Sprintf(":%d", serverPort)
+	addr := fmt.Sprintf(":%s", port)
 	fmt.Printf("Server starting on %s\n", addr)
 
 	if err = http.ListenAndServe(addr, nil); err != nil {

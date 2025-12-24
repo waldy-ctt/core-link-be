@@ -21,20 +21,20 @@ func NewLoginUseCase(a repo.AuthRepository, timeout time.Duration) usecase.Login
 	}
 }
 
-func (uc *loginUseCase) Execute(c context.Context, input usecase.LoginInput) (usecase.LoginOuput, error) {
+func (uc *loginUseCase) Execute(c context.Context, input usecase.LoginInput) (usecase.LoginOutput, error) {
 	ctx, cancel := context.WithTimeout(c, uc.contextTimeout)
 	defer cancel()
 
 	auth, err := uc.authRepo.GetAuthByEmail(ctx, input.Email)
 	if err != nil {
-		return usecase.LoginOuput{}, fmt.Errorf("Invalid Credentials")
+		return usecase.LoginOutput{}, fmt.Errorf("Invalid Credentials")
 	}
 
 	if auth.PasswordHash != input.Password {
-		return usecase.LoginOuput{}, fmt.Errorf("Invalid Credentials")
+		return usecase.LoginOutput{}, fmt.Errorf("Invalid Credentials")
 	}
 
-	return usecase.LoginOuput{
+	return usecase.LoginOutput{
 		AccessToken:  "asd",
 		RefreshToken: "asd",
 	}, nil
