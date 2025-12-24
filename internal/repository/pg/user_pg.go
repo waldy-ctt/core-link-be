@@ -7,17 +7,17 @@ import (
 	"github.com/waldy-ctt/core-link-be/internal/domain/entity"
 )
 
-type PostgreRepo struct {
+type userRepo struct {
 	DB *sql.DB
 }
 
-func NewUserRepo(db *sql.DB) *PostgreRepo {
-	return &PostgreRepo{
+func NewUserRepo(db *sql.DB) *userRepo {
+	return &userRepo{
 		DB: db,
 	}
 }
 
-func (r *PostgreRepo) CreateUser(ctx context.Context, u *entity.User) error {
+func (r *userRepo) CreateUser(ctx context.Context, u *entity.User) error {
 	query := `
 		INSERT INTO users (id, username, display_name, created_at, updated_at) VALUES ($1, $2, $3, $4, $5)
 	`

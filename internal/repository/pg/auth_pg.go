@@ -7,13 +7,17 @@ import (
 	"github.com/waldy-ctt/core-link-be/internal/domain/entity"
 )
 
-func NewAuthRepo(db *sql.DB) *PostgreRepo {
-	return &PostgreRepo{
+type authRepo struct {
+	DB *sql.DB
+}
+
+func NewAuthRepo(db *sql.DB) *authRepo {
+	return &authRepo{
 		DB: db,
 	}
 }
 
-func (r *PostgreRepo) CreateAuth(ctx context.Context, u *entity.Auth) error {
+func (r *authRepo) CreateAuth(ctx context.Context, u *entity.Auth) error {
 	query := `
 		INSERT INTO auth (userid, email, password) VALUES ($1, $2, $3)
 	`
