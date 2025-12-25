@@ -5,13 +5,14 @@ import (
 	"database/sql"
 
 	"github.com/waldy-ctt/core-link-be/internal/domain/entity"
+	"github.com/waldy-ctt/core-link-be/internal/domain/repo"
 )
 
 type userRepo struct {
 	DB *sql.DB
 }
 
-func NewUserRepo(db *sql.DB) *userRepo {
+func NewUserRepo(db *sql.DB) repo.UserRepository {
 	return &userRepo{
 		DB: db,
 	}
@@ -26,3 +27,6 @@ func (r *userRepo) CreateUser(ctx context.Context, u *entity.User) error {
 	return err
 }
 
+func (r *userRepo) GetUserByUsername(ctx context.Context, username string) (*entity.User, error) {
+	return nil, nil
+}

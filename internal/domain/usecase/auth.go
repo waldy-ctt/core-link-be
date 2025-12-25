@@ -5,18 +5,23 @@ import (
 )
 
 type LoginInput struct {
-	Email string
+	Email    string
 	Password string
 }
 
 type SignupInput struct {
-	Username string
-	Email string
-	Password string
+	Username    string
+	Email       string
+	Password    string
 	DisplayName string
 }
 
 type LoginOutput struct {
+	AccessToken  string
+	RefreshToken string
+}
+
+type SignupOutput struct {
 	AccessToken string
 	RefreshToken string
 }
